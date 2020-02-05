@@ -23,4 +23,4 @@ jobs:
           name: Gatsby Build
           command: npm run build
       - store_artifacts:
-          path: /gatsby-site/public
+          path: ~/gatsby-site/public
