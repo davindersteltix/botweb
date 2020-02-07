@@ -12,7 +12,7 @@ pipeline {
       echo "Branch: ${env.BRANCH_NAME}"
       //sh 'git log --oneline -n 1 HEAD'
       script {
-       POM_VERSION = sh(script: "git log --oneline -n 1 HEAD", returnStdout: true)
+       def POM_VERSION = sh(script: "git log --oneline -n 1 HEAD", returnStdout: true)
        echo "${POM_VERSION}"
      }
       }
