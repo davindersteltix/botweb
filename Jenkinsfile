@@ -10,7 +10,11 @@ pipeline {
       steps {
       sh 'git --version'
       echo "Branch: ${env.BRANCH_NAME}"
-      sh 'git log --oneline -n 1 HEAD | grep deploy#'
+      //sh 'git log --oneline -n 1 HEAD'
+      script {
+       POM_VERSION = sh(script: "git log --oneline -n 1 HEAD", returnStdout: true)
+       echo "${POM_VERSION}"
+     }
       }
     }
     stage('Build'){
