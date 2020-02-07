@@ -1,5 +1,6 @@
-node {
-  try {
+pipeline {
+  agent any
+  stages {
     stage('Checkout') {
       checkout scm
     }
@@ -8,14 +9,11 @@ node {
       echo "Branch: ${env.BRANCH_NAME}"
       sh 'printenv'
     }
-    stage('Build Docker'){
-     sh 'npm ci'
+    stage('Build'){
+     sh 'npm install'
      sh 'npm run build'
      sh 'tar -cvf public.tar public'
      archiveArtifacts artifacts: 'public.tar', fingerprint: true
     }
-  }
-  catch (err) {
-    throw err
   }
 }
