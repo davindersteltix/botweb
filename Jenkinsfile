@@ -9,7 +9,7 @@ node {
       sh 'printenv'
     }
     stage('Build'){
-     sh 'npm ci'
+     sh 'npm install'
      sh 'npm run build'
      sh 'tar -cvf public.tar public'
      archiveArtifacts artifacts: 'public.tar', fingerprint: true
