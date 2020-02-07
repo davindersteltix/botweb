@@ -9,7 +9,7 @@ node {
       sh 'printenv'
     }
     stage('Build Docker test'){
-     sh 'npm i'
+     sh 'npm ci'
      sh 'npm run build'
     }
   }
