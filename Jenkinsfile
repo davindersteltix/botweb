@@ -1,5 +1,6 @@
-node {
-  try {
+pipeline {
+  agent any
+  stages {
     stage('Checkout') {
       checkout scm
     }
@@ -14,8 +15,5 @@ node {
      sh 'tar -cvf public.tar public'
      archiveArtifacts artifacts: 'public.tar', fingerprint: true
     }
-  }
-  catch (err) {
-    throw err
   }
 }
