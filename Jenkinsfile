@@ -10,7 +10,7 @@ pipeline {
       steps {
       sh 'git --version'
       echo "Branch: ${env.BRANCH_NAME}"
-      sh 'git log --oneline -n 1 HEAD | grep deploy#'
+      sh 'git log --oneline -n 1 HEAD'
       }
     }
     stage('Build'){
