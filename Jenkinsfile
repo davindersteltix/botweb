@@ -1,6 +1,6 @@
 def skipBuild=true
-node {
-  try {
+pipeline {
+  agent any
   stages {
     stage('Checkout') {
       steps {
@@ -35,11 +35,9 @@ node {
       }
     }
   }
-  }
-  catch (e) {
-        // fail the build if an exception is thrown
-        currentBuild.result = "FAILED"
-        throw e
-    }
-
+  post {
+                post {
+                    echo "currentBuild.result: ${currentBuild.result}"
+                }
+            }
 }
