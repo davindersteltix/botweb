@@ -12,7 +12,7 @@ pipeline {
       echo "Branch: ${env.BRANCH_NAME}"
       //sh 'git log --oneline -n 1 HEAD'
       script {
-       def GIT_LOG = sh(script: "git log --oneline -n 1 HEAD", returnStdout: true)
+       def GIT_LOG = sh(script: "git log --oneline -n 1 HEAD --pretty=format:%B", returnStdout: true)
        echo "GIT_LOG: ${GIT_LOG}"
        def deployMatch = GIT_LOG ==~ /.*deploy#/ 
        echo "deployMatch: ${deployMatch}"
