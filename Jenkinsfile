@@ -36,7 +36,7 @@ pipeline {
     }
   }
   post {
-                post {
+              always {
                     echo "currentBuild.result: ${currentBuild.result}"
                 }
             }
