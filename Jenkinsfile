@@ -1,4 +1,4 @@
-def skipFeatureBranch=false
+def skipFeatureBranch=true
 pipeline {
   agent any
   stages {
@@ -19,13 +19,13 @@ pipeline {
        def deployMatch = message ==~ /(?i).*deploy#.*/
        echo "deployMatch: ${deployMatch}"
        if(!deployMatch){
-         skipFeatureBranch = true;
+         skipFeatureBranch = false;
        }
      }
       }
     }
     stage('Build'){
-      when { expression { skipFeatureBranch == false }}
+      when { expression { skipFeatureBranch == true }}
       steps {
      sh 'npm install'
      sh 'npm run build'
