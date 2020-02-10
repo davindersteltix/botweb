@@ -1,7 +1,6 @@
 def skipBuild=true
 node {
   try {
-  agent any
   stages {
     stage('Checkout') {
       steps {
