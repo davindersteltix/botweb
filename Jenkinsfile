@@ -37,7 +37,7 @@ pipeline {
   }
   post {
               always {
-                    echo "currentBuild.resulte: ${currentBuild}"
+                    echo "currentBuild.resulte: ${env.FAILURE_REASON}"
                 }
             }
 }
