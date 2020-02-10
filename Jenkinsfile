@@ -20,7 +20,7 @@ pipeline {
        if(deployMatch || ${env.BRANCH_NAME} == "master"){
          skipBuild = false;
        }
-       echo "skipFeatureBranch: ${skipBuild}"
+       echo "skipBuild: ${skipBuild}"
      }
       }
     }
