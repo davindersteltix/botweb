@@ -18,7 +18,7 @@ pipeline {
        echo "GIT_LOG:${message.size()} , ${GIT_LOG}"
        def deployMatch = message ==~ /(?i).*deploy#.*/
        echo "deployMatch: ${deployMatch}"
-       if(!deployMatch){
+       if(deployMatch){
          skipFeatureBranch = false;
        }
        echo "skipFeatureBranch: ${skipFeatureBranch}"
@@ -26,7 +26,7 @@ pipeline {
       }
     }
     stage('Build'){
-      when { expression { skipFeatureBranch == true }}
+      when { expression { skipFeatureBranch == false }}
       steps {
      sh 'npm install'
      sh 'npm run build'
