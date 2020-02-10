@@ -11,7 +11,6 @@ pipeline {
       steps {
       sh 'git --version'
       echo "Branch: ${env.BRANCH_NAME}"
-      //sh 'git log --oneline -n 1 HEAD'
       script {
        def GIT_LOG = sh(script: "git log --oneline -n 1 HEAD --pretty=format:%B", returnStdout: true)
        def message = GIT_LOG.trim().replaceAll("\n ", "")
