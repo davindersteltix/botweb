@@ -21,6 +21,7 @@ pipeline {
        if(!deployMatch){
          skipFeatureBranch = false;
        }
+       echo "skipFeatureBranch: ${skipFeatureBranch}"
      }
       }
     }
