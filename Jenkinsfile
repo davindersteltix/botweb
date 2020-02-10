@@ -13,7 +13,7 @@ pipeline {
       //sh 'git log --oneline -n 1 HEAD'
       script {
        def GIT_LOG = sh(script: "git log --oneline -n 1 HEAD --pretty=format:%B", returnStdout: true)
-       echo "GIT_LOG:${GIT_LOG.size()}"
+       echo "GIT_LOG:${GIT_LOG.size()} , ${GIT_LOG}"
        def deployMatch = GIT_LOG ==~ /(?i).*deploy#/
        echo "deployMatch: ${deployMatch}"
      }
