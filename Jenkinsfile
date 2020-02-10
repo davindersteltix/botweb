@@ -17,7 +17,7 @@ pipeline {
        echo "GIT_LOG:${message.size()} , ${GIT_LOG}"
        def deployMatch = message ==~ /(?i).*deploy#.*/
        echo "deployMatch: ${deployMatch}"
-       if(deployMatch || ${env.BRANCH_NAME} == "master"){
+       if(deployMatch || env.BRANCH_NAME == "master"){
          skipBuild = false;
        }
        echo "skipBuild: ${skipBuild}"
