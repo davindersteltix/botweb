@@ -27,7 +27,7 @@ pipeline {
     stage('Build'){
       when { expression { skipBuild == false }}
       steps {
-     slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#appsharedeploy', color: 'good', message: "started ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", tokenCredentialId: 'slack-token'
+     //slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#appsharedeploy', color: 'good', message: "started ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", tokenCredentialId: 'slack-token'
      sh 'npm install'
      sh 'npm run build2'
      sh 'tar -cvf public.tar public'
@@ -37,7 +37,7 @@ pipeline {
   }
   post {
               always {
-                    echo "currentBuild.resulte: ${env.FAILURE_REASON}"
+                    sh 'printenv'
                 }
             }
 }
