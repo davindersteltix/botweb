@@ -27,6 +27,7 @@ pipeline {
     stage('Build'){
       when { expression { skipBuild == false }}
       steps {
+     slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#appsharedeploy', color: 'good', message: 'started ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)', tokenCredentialId: 'slack-token'
      sh 'npm install'
      sh 'npm run build'
      sh 'tar -cvf public.tar public'
