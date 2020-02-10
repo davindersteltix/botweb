@@ -14,7 +14,7 @@ pipeline {
       script {
        def GIT_LOG = sh(script: "git log --oneline -n 1 HEAD", returnStdout: true)
        echo "GIT_LOG: ${GIT_LOG}"
-       def deployMatch = GIT_LOG ==~ /deploy#/ 
+       def deployMatch = GIT_LOG ==~ /.*deploy#/ 
        echo "deployMatch: ${deployMatch}"
      }
       }
