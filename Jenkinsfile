@@ -1,5 +1,6 @@
 def skipBuild=true
-pipeline {
+node {
+  try {
   agent any
   stages {
     stage('Checkout') {
@@ -27,7 +28,7 @@ pipeline {
     stage('Build'){
       when { expression { skipBuild == false }}
       steps {
-     slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#appsharedeploy', color: 'good', message: 'started ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)', tokenCredentialId: 'slack-token'
+     slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#appsharedeploy', color: 'good', message: "started ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", tokenCredentialId: 'slack-token'
      sh 'npm install'
      sh 'npm run build'
      sh 'tar -cvf public.tar public'
@@ -35,4 +36,11 @@ pipeline {
       }
     }
   }
+  }
+  catch (e) {
+        // fail the build if an exception is thrown
+        currentBuild.result = "FAILED"
+        throw e
+    }
+
 }
