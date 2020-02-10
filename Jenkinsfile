@@ -1,4 +1,4 @@
-def skipFeatureBranch=true
+def skipBuild=true
 pipeline {
   agent any
   stages {
@@ -7,7 +7,7 @@ pipeline {
       checkout scm
       }
     }
-    stage('Environment') {
+    stage('check branch') {
       steps {
       sh 'git --version'
       echo "Branch: ${env.BRANCH_NAME}"
@@ -17,15 +17,15 @@ pipeline {
        echo "GIT_LOG:${message.size()} , ${GIT_LOG}"
        def deployMatch = message ==~ /(?i).*deploy#.*/
        echo "deployMatch: ${deployMatch}"
-       if(deployMatch){
-         skipFeatureBranch = false;
+       if(deployMatch || ${env.BRANCH_NAME} == "master"){
+         skipBuild = false;
        }
        echo "skipFeatureBranch: ${skipFeatureBranch}"
      }
       }
     }
     stage('Build'){
-      when { expression { skipFeatureBranch == false }}
+      when { expression { skipBuild == false }}
       steps {
      sh 'npm install'
      sh 'npm run build'
