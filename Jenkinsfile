@@ -32,7 +32,7 @@ pipeline {
     }
    }
    steps {
-     notifyBuild('Build started');
+     notifyBuild('Build started','');
     // sh 'npm install'
     sh 'npm run build2'
     sh 'tar -cvf public.tar public'
