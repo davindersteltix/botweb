@@ -46,23 +46,23 @@ pipeline {
 //  }
 }
 
-// def notifyBuild(String msg , String type) {
-//   // Default values
-//   def colorName = 'RED'
-//   def colorCode = '#FF0000'
-//   def subject = "${msg}: '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
-//   def summary = "${subject} (${env.RUN_DISPLAY_URL})"
-//   // Override default values based on build status
-//   if (type == 'info') {
-//     color = 'YELLOW'
-//     colorCode = '#FFFF00'
-//   } else if (type == 'error') {
-//     color = 'RED'
-//     colorCode = '#FF0000'
-//   } else {
-//     color = 'GREEN'
-//     colorCode = '#00FF00'
-//   }
-//   // Send notifications
-//   slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#appsharedeploy', color: colorCode, message: summary, tokenCredentialId: 'slack-token'
-// }
+def notifyBuild(String msg , String type) {
+  // Default values
+  def colorName = 'RED'
+  def colorCode = '#FF0000'
+  def subject = "${msg}: '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
+  def summary = "${subject} (${env.RUN_DISPLAY_URL})"
+  // Override default values based on build status
+  if (type == 'info') {
+    color = 'YELLOW'
+    colorCode = '#FFFF00'
+  } else if (type == 'error') {
+    color = 'RED'
+    colorCode = '#FF0000'
+  } else {
+    color = 'GREEN'
+    colorCode = '#00FF00'
+  }
+  // Send notifications
+  slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#appsharedeploy', color: colorCode, message: summary, tokenCredentialId: 'slack-token'
+}
