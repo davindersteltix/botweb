@@ -2,6 +2,9 @@ def skipBuild = true
 author
 pipeline {
  agent any
+ environment {
+        AUTHOR = ''
+    }
  stages {
   stage('Checkout') {
    steps {
@@ -14,7 +17,7 @@ pipeline {
     echo "Branch: ${env.BRANCH_NAME}"
     script {
      def GIT_LOG = sh(script: "git log --oneline -n 1 HEAD --pretty=format:%B", returnStdout: true)
-     author = sh(
+     env.AUTHOR = sh(
         script: "git --no-pager show -s --format='%au'",
         returnStdout: true
        ).trim()
@@ -57,7 +60,7 @@ void notifyBuild(String msg , String type) {
   // Default values
   def colorName = 'RED'
   def colorCode = '#FF0000'
-  def subject = "${msg} by ${author}: '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
+  def subject = "${msg} by ${env.AUTHOR}: '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
   def summary = "${subject} (${env.RUN_DISPLAY_URL})"
   if (type == 'info') {
     color = 'YELLOW'
