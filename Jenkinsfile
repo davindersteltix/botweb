@@ -37,7 +37,8 @@ pipeline {
   }
   post {
               always {
-                   echo "CAUSE ${currentBuild.rawBuild.getCauses()}"
+                   echo "CAUSE"
+                   echo "${currentBuild.getBuildCauses()}"
                 }
             }
 }
