@@ -59,7 +59,11 @@ void notifyBuild(String msg , String type) {
   // Default values
   def colorName = 'RED'
   def colorCode = '#FF0000'
-  def subject = "${msg} by ${env.AUTHOR}: '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
+  def author = sh(
+        script: "git --no-pager show -s --format='%au'",
+        returnStdout: true
+       ).trim();
+  def subject = "${msg} by ${author}: '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
   def summary = "${subject} (${env.RUN_DISPLAY_URL})"
   if (type == 'info') {
     color = 'YELLOW'
