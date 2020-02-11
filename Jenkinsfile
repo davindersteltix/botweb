@@ -37,7 +37,7 @@ pipeline {
   }
   post {
               always {
-                  sh 'printenv'
+                slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#appsharedeploy', color: '#FF0000', message: "build error ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.RUN_DISPLAY_URL}|Open>)", tokenCredentialId: 'slack-token'
                 }
             }
 }
