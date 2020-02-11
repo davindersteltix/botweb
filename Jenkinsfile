@@ -36,7 +36,7 @@ pipeline {
     }
    }
    steps {
-    // notifyBuild('Build started','');
+     notifyBuild('Build started','');
     // sh 'npm install'
     sh 'printenv' 
     sh 'npm run build'
