@@ -39,11 +39,11 @@ pipeline {
    }
   }
  }
- post {
-  failure {
-   notifyBuild('Build error','error');
-  }
- }
+//  post {
+//   failure {
+//    notifyBuild('Build error','error');
+//   }
+//  }
 }
 
 def notifyBuild(String msg , String type) {
