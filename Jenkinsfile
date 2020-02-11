@@ -27,7 +27,7 @@ pipeline {
   stage('Build') {
    when {
     expression {
-     skipBuild != true
+     skipBuild == false
     }
    }
    steps {
