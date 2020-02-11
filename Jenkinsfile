@@ -38,7 +38,7 @@ pipeline {
   post {
               always {
                    echo "CAUSE"
-                   echo "${currentBuild.buildCauses}"
+                   echo "${env.BUILD_URL}"
                 }
             }
 }
