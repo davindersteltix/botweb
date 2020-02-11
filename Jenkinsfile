@@ -1,5 +1,5 @@
 def skipBuild = true
-def author =""
+author
 pipeline {
  agent any
  stages {
