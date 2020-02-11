@@ -1,5 +1,4 @@
 def skipBuild = true
-author
 pipeline {
  agent any
  environment {
