@@ -34,9 +34,10 @@ pipeline {
    steps {
      notifyBuild('Build started','');
     // sh 'npm install'
-    sh 'npm run build2'
+    sh 'npm run build'
     sh 'tar -cvf public.tar public'
     archiveArtifacts artifacts: 'public.tar', fingerprint: true
+    notifyBuild('Build finished','');
    }
   }
  }
