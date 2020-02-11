@@ -32,18 +32,19 @@ pipeline {
     }
    }
    steps {
-     notifyBuild('Build started','');
+    // notifyBuild('Build started','');
     // sh 'npm install'
+    sh 'printenv' 
     sh 'npm run build'
     sh 'tar -cvf public.tar public'
     archiveArtifacts artifacts: 'public.tar', fingerprint: true
-    notifyBuild('Build finished','');
+   // notifyBuild('Build finished','');
    }
   }
  }
  post {
   failure {
-   notifyBuild('Build error','error');
+   //notifyBuild('Build error','error');
   }
  }
 }
