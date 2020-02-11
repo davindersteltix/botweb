@@ -44,7 +44,7 @@ pipeline {
     sh 'npm run build'
     sh 'tar -cvf public.tar public'
     archiveArtifacts artifacts: 'public.tar', fingerprint: true
-   // notifyBuild('Build finished','');
+    notifyBuild('Build finished','');
    }
   }
  }
