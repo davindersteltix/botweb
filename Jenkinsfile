@@ -53,7 +53,6 @@ void notifyBuild(String msg , String type) {
   def colorCode = '#FF0000'
   def subject = "${msg}: '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
   def summary = "${subject} (${env.RUN_DISPLAY_URL})"
-  // Override default values based on build status
   if (type == 'info') {
     color = 'YELLOW'
     colorCode = '#FFFF00'
