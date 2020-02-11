@@ -37,8 +37,7 @@ pipeline {
   }
   post {
               always {
-                   echo "CAUSE."
-                   echo "${env.BUILD_URL}"
+                  sh 'printenv'
                 }
             }
 }
