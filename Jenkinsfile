@@ -41,7 +41,7 @@ pipeline {
      notifyBuild('Build started','');
     // sh 'npm install'
     sh 'printenv' 
-    sh 'npm run build33'
+    sh 'npm run build'
     sh 'tar -cvf public.tar public'
     archiveArtifacts artifacts: 'public.tar', fingerprint: true
     notifyBuild('Build finished','');
