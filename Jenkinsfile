@@ -41,7 +41,7 @@ pipeline {
   }
  }
  post {
-  always {
+  failure {
    notifyBuild('Build error','error');
   }
  }
