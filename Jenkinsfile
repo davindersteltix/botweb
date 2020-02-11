@@ -37,7 +37,7 @@ pipeline {
   }
   post {
               always {
-                    sh 'printenv'
+                    echo currentBuild.getBuildCauses()
                 }
             }
 }
