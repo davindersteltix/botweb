@@ -60,7 +60,7 @@ void notifyBuild(String msg , String type) {
   def colorName = 'RED'
   def colorCode = '#FF0000'
   def author = sh(
-        script: "git --no-pager show -s --format='%au'",
+        script: "git --no-pager show -s --format='%an'",
         returnStdout: true
        ).trim();
   def subject = "${msg} by ${author}: '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
