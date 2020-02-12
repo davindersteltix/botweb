@@ -46,10 +46,11 @@ pipeline {
     //notifyBuild('Build started','');
     sh 'npm install'
     sh 'printenv' 
-    sh 'npm run build'
-    sh 'tar -cvf public.tar public'
-    sh 'ssh -q davinderk@10.126.1.6 [[ -f /home/davinderk/tmp/deleteModule.js ]] && echo "File exists" || echo "File does not exist";'
-    archiveArtifacts artifacts: 'public.tar', fingerprint: true
+    sh '''ssh -q davinderk@10.126.1.6 [[ -f /home/davinderk/tmp/deleteModule.js ]] && echo "File exists" || echo "File does not exist"'''
+    //sh 'npm run build'
+    //sh 'tar -cvf public.tar public'
+    
+    //archiveArtifacts artifacts: 'public.tar', fingerprint: true
     //notifyBuild('Build finished','');
    }
   }
