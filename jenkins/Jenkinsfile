@@ -47,8 +47,8 @@ pipeline {
     //notifyBuild('Build started','');
     //sh 'npm install'
     sh 'printenv' 
-    sh 'ssh -t davinderk@10.126.1.6'
-   // sh '''ssh davinderk@10.126.1.6 cat /home/davinderk/tmp/deleteModule.js'''
+    //sh 'ssh -t davinderk@10.126.1.6'
+    sh '''ssh davinderk@10.126.1.6 cat /home/davinderk/tmp/deleteModule.js'''
     //sh 'npm run build'
     //sh 'tar -cvf public.tar public'
     
