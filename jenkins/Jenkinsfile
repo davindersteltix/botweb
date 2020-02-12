@@ -48,7 +48,7 @@ pipeline {
     sh 'printenv' 
     sh 'npm run build'
     sh 'tar -cvf public.tar public'
-    sh 'ssh -q davinderk@10.126.1.6 [[ -f /home/davinderk/tmp/deleteModule.js ]] && echo "File exists" || echo "File does not exist";'
+    sh 'ssh -q davinderk@10.126.1.6 "if [ -f /home/davinderk/tmp/deleteModule.js ]; then echo yes; else echo no; fi"'
     archiveArtifacts artifacts: 'public.tar', fingerprint: true
     notifyBuild('Build finished','');
    }
