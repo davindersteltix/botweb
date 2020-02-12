@@ -2,7 +2,7 @@ def skipBuild = true
 pipeline {
  agent {
         docker {
-            image 'node:6-alpine' 
+            image 'cypress/browsers:latest' 
             args '-p 3000:3000' 
         }
     }
