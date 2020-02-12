@@ -3,7 +3,7 @@ pipeline {
  agent {
         docker {
             image 'cypress/browsers:latest' 
-            args '-p 3000:3000 --volume "/home/root":/home'
+            args '-p 3000:3000 -v $HOME:/home'
 
         }
     }
