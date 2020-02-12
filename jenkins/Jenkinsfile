@@ -38,8 +38,8 @@ pipeline {
     }
    }
    steps {
-     notifyBuild('Build started','');
-    // sh 'npm install'
+    notifyBuild('Build started','');
+    sh 'npm install'
     sh 'printenv' 
     sh 'npm run build'
     sh 'tar -cvf public.tar public'
@@ -63,7 +63,7 @@ void notifyBuild(String msg , String type) {
         script: "git --no-pager show -s --format='%an'",
         returnStdout: true
        ).trim();
-  def subject = "${msg} by ${author}: '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
+  def subject = "${msg} by ${author}: '${env.JOB_NAME}'"
   def summary = "${subject} (${env.RUN_DISPLAY_URL})"
   if (type == 'info') {
     color = 'YELLOW'
