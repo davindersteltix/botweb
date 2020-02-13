@@ -45,10 +45,10 @@ pipeline {
    steps {
     //notifyBuild('Build started','');
     //sh 'npm install'
-    //input message: 'Finished using the web site? (Click "Proceed" to continue)'
+    input message: 'Finished using the web site? (Click "Proceed" to continue)'
     sh 'printenv' 
     //sh 'ssh -t davinderk@10.126.1.6'
-    sh '''ssh davinderk@10.126.1.6 cat /home/davinderk/tmp/deleteModule.js'''
+    //sh '''ssh davinderk@10.126.1.6 cat /home/davinderk/tmp/deleteModule.js'''
     //sh 'npm run build'
     //sh 'tar -cvf public.tar public'
     
