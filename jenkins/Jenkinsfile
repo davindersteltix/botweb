@@ -50,7 +50,7 @@ pipeline {
     sh 'printenv' 
     //sh 'ssh -t davinderk@10.126.1.6'
     sh '''ssh -i /home/node/.ssh/id_rsa davinderk@10.126.1.6 -o "StrictHostKeyChecking no" [[ -f /u01/app/appshare/frontend/deploymentRunning ]] && echo "true" || echo "false"'''
-    sh '''scp public.tar -i /home/node/.ssh/id_rsa davinderk@10.126.1.6:/u01/app/appshare/frontend/'''
+    sh '''scp -i /home/node/.ssh/id_rsa public.tar davinderk@10.126.1.6:/u01/app/appshare/frontend/'''
     //sh 'npm run build'
     //sh 'tar -cvf public.tar public'
     //archiveArtifacts artifacts: 'public.tar', fingerprint: true
