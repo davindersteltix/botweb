@@ -3,7 +3,7 @@ pipeline {
  agent {
         docker {
             image 'cypress/browsers:latest' 
-            args '-v /home:/home/node/ -u root'
+            args '-v /home:/home/node/ -u root -v /usr/local/bin/docker:/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
  environment {
@@ -37,7 +37,6 @@ pipeline {
    }
   }
   stage('Build') {
-    agent any
    when {
     expression {
      skipBuild == false
