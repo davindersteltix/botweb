@@ -56,7 +56,7 @@ pipeline {
     //sh '''scp -i /home/node/.ssh/id_rsa public.tar davinderk@10.126.1.6:/u01/app/appshare/frontend/'''
     sh 'npm run build'
     withCredentials([string(credentialsId: 'docker-hub-password', variable: 'DOCKER_PWD')]) {
-    sh ' docker login -p ${DOCKER_PWD}'
+    sh ' docker login -u steltix -p ${DOCKER_PWD}'
   }
     
     script {
