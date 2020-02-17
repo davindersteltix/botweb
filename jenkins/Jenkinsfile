@@ -3,7 +3,7 @@ pipeline {
  agent {
         docker {
             image 'cypress/browsers:latest' 
-            args '-v /home:/home/node/ -u root -v jenkins-docker-certs:/certs/client:ro -e DOCKER_HOST=tcp://docker:2376'
+            args '-v /home:/home/node/ -u root'
         }
     }
  environment {
@@ -37,6 +37,7 @@ pipeline {
    }
   }
   stage('Build') {
+    agent any
    when {
     expression {
      skipBuild == false
@@ -46,16 +47,16 @@ pipeline {
     //notifyBuild('Build started','');
     //sh 'npm install';
     //sh 'ls /home/node'
-    input message: 'Finished using the web site? (Click "Proceed" to continue)'
-    sh 'printenv' 
+    //input message: 'Finished using the web site? (Click "Proceed" to continue)'
+    sh 'docker ps'
     //sh 'ssh -t davinderk@10.126.1.6'
     //sh '''ssh -i /home/node/.ssh/id_rsa davinderk@10.126.1.6 -o "StrictHostKeyChecking no" [[ -f /u01/app/appshare/frontend/deploymentRunning ]] && echo "true" || echo "false"'''
     //sh '''scp -i /home/node/.ssh/id_rsa public.tar davinderk@10.126.1.6:/u01/app/appshare/frontend/'''
-    sh 'npm run build'
-    script {
-    def customImage = docker.build("steltix/appshare:${env.BRANCH_NAME}-${env.BUILD_ID}", ".")
-    customImage.push()
-    }
+    //sh 'npm run build'
+    //script {
+    //def customImage = docker.build("steltix/appshare:${env.BRANCH_NAME}-${env.BUILD_ID}", ".")
+    //customImage.push()
+    //}
     //sh 'tar -cvf public.tar public'
     //archiveArtifacts artifacts: 'public.tar', fingerprint: true
     //notifyBuild('Build finished','');
