@@ -3,12 +3,7 @@ pipeline {
  agent {
         docker {
             image 'cypress/browsers:latest' 
-            args '-v /home:/home/node/ 
-            -u root 
-            -v jenkins-docker-certs:/certs/client:ro 
-            -n jenkins 
-            -e DOCKER_HOST=tcp://docker:2376
-            '
+            args '-v /home:/home/node/ -u root -v jenkins-docker-certs:/certs/client:ro -n jenkins -e DOCKER_HOST=tcp://docker:2376'
         }
     }
  environment {
