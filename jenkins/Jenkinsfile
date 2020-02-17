@@ -44,6 +44,11 @@ pipeline {
    }
    steps {
     //notifyBuild('Build started','');
+    withCredentials([string(credentialsId: 'docker-hub-password', variable: 'DOCKER_PWD')]) {
+    sh /* WRONG! */ """
+      echo $DOCKER_PWD
+    """
+  }
     sh 'npm install';
     //sh 'ls /home/node'
     //input message: 'Finished using the web site? (Click "Proceed" to continue)'
