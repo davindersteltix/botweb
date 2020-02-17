@@ -53,10 +53,10 @@ pipeline {
     //sh '''scp -i /home/node/.ssh/id_rsa public.tar davinderk@10.126.1.6:/u01/app/appshare/frontend/'''
     sh 'npm run build'
     script {
-      //docker.withServer('https://docs.docker.com', 'dockerhub') {
+      docker.withRegistry('https://docs.docker.com', 'dockerhub') {
     def customImage = docker.build("steltix/appshare:${env.BRANCH_NAME}-${env.BUILD_ID}", ".")
     customImage.push()
-      //}
+      }
     }
     //sh 'tar -cvf public.tar public'
     //archiveArtifacts artifacts: 'public.tar', fingerprint: true
