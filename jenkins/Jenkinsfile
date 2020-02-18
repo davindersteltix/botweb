@@ -61,10 +61,10 @@ pipeline {
     
     script {
        //docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-password') {
-    //def customImage = docker.build("steltix/appshare:${env.BRANCH_NAME}-${env.BUILD_ID}", "--label 'branch=${BRANCH_NAME}' .")
-    //customImage.push()
+    def customImage = docker.build("steltix/appshare:${env.BRANCH_NAME}-${env.BUILD_ID}", "--label 'branch=${BRANCH_NAME}' .")
+    customImage.push()
     sh '''ssh -i /home/node/.ssh/id_rsa davinderk@10.126.1.6 -o "StrictHostKeyChecking no" "docker rm -f appshare-steltix-3000" '''
-    sh '''ssh -i /home/node/.ssh/id_rsa davinderk@10.126.1.6 -o "StrictHostKeyChecking no" "docker run -d  -p 3000:80 -l account=steltix -l port=3000 -l owner=appshare --restart always --name appshare-steltix-3000 steltix/appshare:newBranch-78" '''
+    sh ssh -i /home/node/.ssh/id_rsa davinderk@10.126.1.6 -o "StrictHostKeyChecking no" "docker run -d  -p 3000:80 -l account=steltix -l port=3000 -l owner=appshare --restart always --name appshare-steltix-3000 steltix/appshare:${env.BRANCH_NAME}-${env.BUILD_ID}"
       //}
     }
     //sh 'tar -cvf public.tar public'
